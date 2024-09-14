@@ -5,7 +5,8 @@ import apiBaseUrl from '../apiConfig';
 
 const TaskEdit = () => {
   const { id } = useParams();
-  const [task, setTask] = useState({ title: '', description: '', dueDate: '', priority: 'low' }); 
+  const [task, setTask] = useState({ title: '', description: '', dueDate: '', priority: 'low' }); // Default priority to 'low'
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`${apiBaseUrl}/api/tasks/${id}`)
