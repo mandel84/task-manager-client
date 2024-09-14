@@ -4,13 +4,12 @@ import axios from 'axios';
 import apiBaseUrl from '../apiConfig';
 
 const ProjectDetail = () => {
-  const { projectId } = useParams(); // Get the projectId from the URL
+  const { projectId } = useParams(); 
   const [project, setProject] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch project details
     const fetchProject = async () => {
       try {
         const response = await axios.get(`${apiBaseUrl}/api/projects/${projectId}`);
@@ -21,7 +20,6 @@ const ProjectDetail = () => {
       }
     };
 
-    // Fetch tasks for this project
     const fetchTasks = async () => {
       try {
         const response = await axios.get(`${apiBaseUrl}/api/projects/${projectId}/tasks`);

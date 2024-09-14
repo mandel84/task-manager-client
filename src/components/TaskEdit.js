@@ -5,17 +5,15 @@ import apiBaseUrl from '../apiConfig';
 
 const TaskEdit = () => {
   const { id } = useParams();
-  const [task, setTask] = useState({ title: '', description: '', dueDate: '', priority: 'low' }); // Default priority to 'low'
-  const navigate = useNavigate();
+  const [task, setTask] = useState({ title: '', description: '', dueDate: '', priority: 'low' }); 
 
   useEffect(() => {
-    // Fetch task by ID and ensure priority is set correctly
     axios.get(`${apiBaseUrl}/api/tasks/${id}`)
       .then(response => {
         const formattedTask = {
           ...response.data,
-          dueDate: new Date(response.data.dueDate).toISOString().split('T')[0], // Format the date
-          priority: response.data.priority || 'low' // Ensure a default priority
+          dueDate: new Date(response.data.dueDate).toISOString().split('T')[0], 
+          priority: response.data.priority || 'low' 
         };
         setTask(formattedTask);
       })
@@ -24,7 +22,6 @@ const TaskEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ensure priority is not empty
     if (!task.priority) {
       task.priority = 'low';
     }

@@ -15,10 +15,9 @@ const formatDateForInput = (dateString) => {
 
 const TaskForm = () => {
   const [task, setTask] = useState({ title: '', description: '', dueDate: '', priority: 'low', projectId: '' });
-  const [projects, setProjects] = useState([]); // To populate the project dropdown
+  const [projects, setProjects] = useState([]); 
   const navigate = useNavigate();
 
-  // Fetch available projects for selection
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -85,7 +84,7 @@ const TaskForm = () => {
         </select>
       </div>
       <div>
-        <label>Assign to Project (optional):</label>
+        <label>Assign to Project:</label>
         <select
           value={task.projectId}
           onChange={(e) => setTask({ ...task, projectId: e.target.value })}
